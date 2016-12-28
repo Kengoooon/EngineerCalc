@@ -177,7 +177,7 @@ class ViewController: UIViewController {
         count = num.characters.count
         for i in 0..<count{
             power = Int(pow(16,Double(i)))
-            sum += Int(convhextodec(input:(num.substring(with: num.index(num.startIndex,offsetBy: i)..<num.index(num.endIndex,offsetBy:-count+i+1)))))! * power
+            sum += Int(convhextodec(input:(num.substring(with: num.index(num.startIndex,offsetBy: count-i-1)..<num.index(num.endIndex,offsetBy:-i)))))! * power
         }
         result = String(sum)
         return result
@@ -191,15 +191,15 @@ class ViewController: UIViewController {
     
     //2進数を10進数へ変換
     func bintodec(num:String) -> String{
-        print(num)
+        print("num : \(num)")
         var sum:Int = 0
         var power:Int = 0
         count = num.characters.count
         for i in 0..<count{
             power = Int(pow(2,Double(i)))
-            sum += Int(num.substring(with: num.index(num.startIndex,offsetBy: i)..<num.index(num.endIndex,offsetBy:-count+i+1)))! * power
-            print(sum)
-            print(power)
+            sum += Int(num.substring(with: num.index(num.startIndex,offsetBy: count-i-1)..<num.index(num.endIndex,offsetBy:-i)))! * power
+            print("sum : \(sum)")
+            print("power : \(power)")
         }
         result = String(sum)
         return result
@@ -314,7 +314,6 @@ class ViewController: UIViewController {
         case 2:
             bin += "0"
             binlabel.text = bin
-            declabel.text = bintodec(num: bin)
             frombin()
         case 8:
             oct += "0"
@@ -336,7 +335,7 @@ class ViewController: UIViewController {
         case 2:
             bin += "1"
             binlabel.text = bin
-            declabel.text = bintodec(num: bin)
+
             frombin()
         case 8:
             oct += "1"
