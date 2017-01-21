@@ -34,8 +34,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var sevenbutton: UIButton!
     @IBOutlet weak var eightbutton: UIButton!
     @IBOutlet weak var ninebutton: UIButton!
-    
-    var inputflag:Int = 0
+
     var hex:String = ""
     var dec:String = ""
     var oct:String = ""
@@ -57,192 +56,151 @@ class ViewController: UIViewController {
     
     //計算関数
     func calc(input:String) -> (){
-        switch inputflag {
-        case 2:
+        switch inputSource {
+        case .bin:
             switch ope {
             case "+":
                 sum += Float64(bintodec(num: input))!
-                result = dectobin(num: String(format:"%g",sum))
-                binlabel.text = result
-                bin = result
-                frombin()
             case "-":
                 sum -= Float64(bintodec(num: input))!
-                result = dectobin(num: String(format:"%g",sum))
-                binlabel.text = result
-                bin = result
-                frombin()
             case "×":
                 sum *= Float64(bintodec(num: input))!
-                result = dectobin(num: String(format:"%g",sum))
-                binlabel.text = result
-                bin = result
-                frombin()
             case "÷":
                 sum /= Float64(bintodec(num: input))!
-                result = dectobin(num: String(format:"%g",sum))
-                binlabel.text = result
-                bin = result
-                frombin()
             case "":
                 sum = Float64(bintodec(num: input))!
-                result = dectobin(num: String(format:"%g",sum))
-                binlabel.text = result
                 firstFlg = 1
-                bin = result
-                frombin()
             default: break
             }
+            result = dectobin(num: String(format:"%g",sum))
+            binlabel.text = result
+            bin = result
+            frombin()
             return
-        
-        case 8:
+
+        case .oct:
             switch ope {
             case "+":
                 sum += Float64(bintodec(num: input))!
-                result = dectooct(num: String(format:"%g",sum))
-                octlabel.text = result
-                oct = result
-                fromoct()
             case "-":
                 sum -= Float64(bintodec(num: input))!
-                result = dectooct(num: String(format:"%g",sum))
-                octlabel.text = result
-                oct = result
-                fromoct()
             case "×":
                 sum *= Float64(bintodec(num: input))!
-                result = dectooct(num: String(format:"%g",sum))
-                octlabel.text = result
-                oct = result
-                fromoct()
             case "÷":
                 sum /= Float64(bintodec(num: input))!
-                result = dectooct(num: String(format:"%g",sum))
-                octlabel.text = result
-                oct = result
-                fromoct()
             case "":
                 sum = Float64(octtodec(num: input))!
-                result = dectooct(num: String(format:"%g",sum))
-                octlabel.text = result
                 firstFlg = 1
-                oct = result
-                fromoct()
             default: break
             }
+            result = dectooct(num: String(format:"%g",sum))
+            octlabel.text = result
+            oct = result
+            fromoct()
             return
             
-        case 10:
+        case .dec:
             switch ope {
             case "+":
                 sum += Float64(bintodec(num: input))!
-                result = String(format:"%g",sum)
-                declabel.text = result
-                dec = result
-                fromDecimal()
             case "-":
                 sum -= Float64(bintodec(num: input))!
-                result = String(format:"%g",sum)
-                declabel.text = result
-                dec = result
-                fromDecimal()
             case "×":
                 sum *= Float64(bintodec(num :input))!
-                result = String(format:"%g",sum)
-                declabel.text = result
-                dec = result
-                fromDecimal()
             case "÷":
                 sum /= Float64(bintodec(num: input))!
-                result = String(format:"%g",sum)
-                declabel.text = result
-                dec = result
-                fromDecimal()
             case "":
                 sum = Float64(input)!
-                result = String(format:"%g",sum)
-                declabel.text = result
-                dec = result
                 firstFlg = 1
-                fromDecimal()
-                
             default: break
             }
+            result = String(format:"%g",sum)
+            declabel.text = result
+            dec = result
+            fromDecimal()
             return
-
             
-        case 16:
+        case .hex:
             switch ope {
             case "+":
                 sum += Float64(bintodec(num: input))!
-                result = dectohex(num: String(format:"%g",sum))
-                hexlabel.text = result
-                hex = result
-                fromhex()
             case "-":
                 sum -= Float64(bintodec(num: input))!
-                result = dectohex(num: String(format:"%g",sum))
-                hexlabel.text = result
-                hex = result
-                fromhex()
             case "×":
                 sum *= Float64(bintodec(num: input))!
-                result = dectohex(num: String(format:"%g",sum))
-                hexlabel.text = result
-                hex = result
-                fromhex()
             case "÷":
                 sum /= Float64(bintodec(num: input))!
-                result = dectohex(num: String(format:"%g",sum))
-                hexlabel.text = result
-                hex = result
-                fromhex()
             case "":
                 sum = Float64(hextodec(num: input))!
-                result = dectohex(num: String(format:"%g",sum))
-                hexlabel.text = result
                 firstFlg = 1
-                hex = result
-                fromhex()
             default: break
             }
+            result = dectohex(num: String(format:"%g",sum))
+            hexlabel.text = result
+            hex = result
+            fromhex()
             return
-
-        default:break
         }
-
     }
     
     func borderClear() -> (){
-        hexbutton.layer.borderColor = UIColor.orange.cgColor
-        decbutton.layer.borderColor = UIColor.orange.cgColor
-        octbutton.layer.borderColor = UIColor.orange.cgColor
-        binbutton.layer.borderColor = UIColor.orange.cgColor
+        hexbutton.layer.borderColor = UIColor.black.cgColor
+        decbutton.layer.borderColor = UIColor.black.cgColor
+        octbutton.layer.borderColor = UIColor.black.cgColor
+        binbutton.layer.borderColor = UIColor.black.cgColor
+        hexlabel.layer.borderColor = UIColor.black.cgColor
+        declabel.layer.borderColor = UIColor.black.cgColor
+        octlabel.layer.borderColor = UIColor.black.cgColor
+        binlabel.layer.borderColor = UIColor.black.cgColor
+        hexbutton.layer.borderWidth = 0.5
+        decbutton.layer.borderWidth = 0.5
+        octbutton.layer.borderWidth = 0.5
+        binbutton.layer.borderWidth = 0.5
+        hexlabel.layer.borderWidth = 0.5
+        declabel.layer.borderWidth = 0.5
+        octlabel.layer.borderWidth = 0.5
+        binlabel.layer.borderWidth = 0.5
     }
     
-    func hexClear() -> (){
-        Abutton.layer.backgroundColor = UIColor.black.cgColor
-        Bbutton.layer.backgroundColor = UIColor.black.cgColor
-        Cbutton.layer.backgroundColor = UIColor.black.cgColor
-        Dbutton.layer.backgroundColor = UIColor.black.cgColor
-        Ebutton.layer.backgroundColor = UIColor.black.cgColor
-        Fbutton.layer.backgroundColor = UIColor.black.cgColor
+    func buttonClear() -> (){
+        switch inputSource {
+        case .hex:
+            break
+        case .dec:
+            Abutton.layer.backgroundColor = UIColor.black.cgColor
+            Bbutton.layer.backgroundColor = UIColor.black.cgColor
+            Cbutton.layer.backgroundColor = UIColor.black.cgColor
+            Dbutton.layer.backgroundColor = UIColor.black.cgColor
+            Ebutton.layer.backgroundColor = UIColor.black.cgColor
+            Fbutton.layer.backgroundColor = UIColor.black.cgColor
+        case .oct:
+            Abutton.layer.backgroundColor = UIColor.black.cgColor
+            Bbutton.layer.backgroundColor = UIColor.black.cgColor
+            Cbutton.layer.backgroundColor = UIColor.black.cgColor
+            Dbutton.layer.backgroundColor = UIColor.black.cgColor
+            Ebutton.layer.backgroundColor = UIColor.black.cgColor
+            Fbutton.layer.backgroundColor = UIColor.black.cgColor
+            eightbutton.layer.backgroundColor = UIColor.black.cgColor
+            ninebutton.layer.backgroundColor = UIColor.black.cgColor
+        case .bin:
+            Abutton.layer.backgroundColor = UIColor.black.cgColor
+            Bbutton.layer.backgroundColor = UIColor.black.cgColor
+            Cbutton.layer.backgroundColor = UIColor.black.cgColor
+            Dbutton.layer.backgroundColor = UIColor.black.cgColor
+            Ebutton.layer.backgroundColor = UIColor.black.cgColor
+            Fbutton.layer.backgroundColor = UIColor.black.cgColor
+            twobutton.layer.backgroundColor = UIColor.black.cgColor
+            threebutton.layer.backgroundColor = UIColor.black.cgColor
+            fourbutton.layer.backgroundColor = UIColor.black.cgColor
+            fivebutton.layer.backgroundColor = UIColor.black.cgColor
+            sixbutton.layer.backgroundColor = UIColor.black.cgColor
+            sevenbutton.layer.backgroundColor = UIColor.black.cgColor
+            eightbutton.layer.backgroundColor = UIColor.black.cgColor
+            ninebutton.layer.backgroundColor = UIColor.black.cgColor
+        }
+        
     }
-    func octClear() -> (){
-        eightbutton.layer.backgroundColor = UIColor.black.cgColor
-        ninebutton.layer.backgroundColor = UIColor.black.cgColor
-     }
 
-    func binClear() -> (){
-        twobutton.layer.backgroundColor = UIColor.black.cgColor
-        threebutton.layer.backgroundColor = UIColor.black.cgColor
-        fourbutton.layer.backgroundColor = UIColor.black.cgColor
-        fivebutton.layer.backgroundColor = UIColor.black.cgColor
-        sixbutton.layer.backgroundColor = UIColor.black.cgColor
-        sevenbutton.layer.backgroundColor = UIColor.black.cgColor
-        eightbutton.layer.backgroundColor = UIColor.black.cgColor
-        ninebutton.layer.backgroundColor = UIColor.black.cgColor
-    }
     func backgroundreset() -> (){
         twobutton.layer.backgroundColor = UIColor.lightGray.cgColor
         threebutton.layer.backgroundColor = UIColor.lightGray.cgColor
@@ -272,7 +230,7 @@ class ViewController: UIViewController {
         declabel.text = "0"
         octlabel.text = "0"
         binlabel.text = "0"
-        inputflag = 0
+        inputSource = .hex
     }
     
     //演算子フラグをクリアする関数
@@ -362,7 +320,6 @@ class ViewController: UIViewController {
         return result
     }
     
-    
     //16進数を10進数へ変換
     func hextodec(num:String) -> String{
         var convsum:Int = 0
@@ -421,683 +378,254 @@ class ViewController: UIViewController {
         binlabel.text = dectobin(num: octtodec(num: oct))
     }
     
-    @IBAction func hexbutton(_ sender: UIButton) {
+    enum InputSource {
+        case hex
+        case dec
+        case oct
+        case bin
+    }
+    //ラベルをタッチした際に枠線に色をつける関数
+    func highlight(button: UIButton, label: UILabel, source: InputSource) {
         backgroundreset()
         Clear()
         flgClear()
         borderClear()
-        inputflag = 16
-        hexbutton.layer.borderColor = UIColor.red.cgColor
+        button.layer.borderWidth = 2
+        button.layer.borderColor = UIColor.red.cgColor
+        label.layer.borderWidth = 2;
+        label.layer.borderColor = UIColor.red.cgColor
+        inputSource = source
+    }
+    var inputSource: InputSource = .hex
+    
+    @IBAction func hexbutton(_ sender: UIButton) {
+        highlight(button: hexbutton, label: hexlabel, source: .hex)
     }
     @IBAction func decbutton(_ sender: UIButton) {
-        backgroundreset()
-        borderClear()
-        hexClear()
-        Clear()
-        flgClear()
-        inputflag = 10
-        decbutton.layer.borderColor = UIColor.red.cgColor
+        highlight(button: decbutton, label: declabel, source: .dec)
+        buttonClear()
     }
     @IBAction func octbutton(_ sender: UIButton) {
-        backgroundreset()
-        borderClear()
-        hexClear()
-        octClear()
-        Clear()
-        flgClear()
-        inputflag = 8
-        octbutton.layer.borderColor = UIColor.red.cgColor
+        highlight(button: octbutton, label: octlabel, source: .oct)
+        buttonClear()
     }
     @IBAction func binbutton(_ sender: UIButton) {
-        backgroundreset()
-        borderClear()
-        hexClear()
-        binClear()
-        Clear()
-        flgClear()
-        inputflag = 2
-        binbutton.layer.borderColor = UIColor.red.cgColor
+        highlight(button: binbutton, label: binlabel, source: .bin)
+        buttonClear()
     }
 
-    
-    
-    @IBAction func Abutton(_ sender: UIButton) {
-        if inputflag == 16{
+    //ボタン入力関数
+    func buttoninput(number: String){
+        switch inputSource {
+        case .hex:
             if opeFlg == 0{
-                hex += "A"
+                hex += number
                 hexlabel.text = hex
                 fromhex()
             }else{
-                hex = "A"
+                hex = number
                 hexlabel.text = hex
                 fromhex()
                 flgClear()
             }
+        case .dec:
+            if opeFlg == 0{
+                dec += number
+                declabel.text = dec
+                fromDecimal()
+            }else{
+                dec = number
+                declabel.text = dec
+                fromDecimal()
+                flgClear()
+            }
+        case .oct:
+            if opeFlg == 0{
+                oct += number
+                octlabel.text = oct
+                fromoct()
+            }else{
+                oct = number
+                octlabel.text = oct
+                fromoct()
+                flgClear()
+            }
+        case .bin:
+            if opeFlg == 0{
+                bin += number
+                binlabel.text = bin
+                frombin()
+            }else{
+                bin = number
+                binlabel.text = bin
+                frombin()
+                flgClear()
+            }
         }
+    }
+
+    @IBAction func Abutton(_ sender: UIButton) {
+        buttoninput(number: "A")
     }
     @IBAction func Bbutton(_ sender: UIButton) {
-        if inputflag == 16{
-            if opeFlg == 0{
-                hex += "B"
-                hexlabel.text = hex
-                fromhex()
-            }else{
-                hex = "B"
-                hexlabel.text = hex
-                fromhex()
-                flgClear()
-            }
-        }
+        buttoninput(number: "B")
     }
     @IBAction func Cbutton(_ sender: UIButton) {
-        if inputflag == 16{
-            if opeFlg == 0{
-                hex += "C"
-                hexlabel.text = hex
-                fromhex()
-            }else{
-                hex = "C"
-                hexlabel.text = hex
-                fromhex()
-                flgClear()
-            }
-        }
+        buttoninput(number: "C")
     }
     @IBAction func Dbutton(_ sender: UIButton) {
-        if inputflag == 16{
-            if opeFlg == 0{
-                hex += "D"
-                hexlabel.text = hex
-                fromhex()
-            }else{
-                hex = "D"
-                hexlabel.text = hex
-                fromhex()
-                flgClear()
-            }
-        }
+        buttoninput(number: "D")
     }
     @IBAction func Ebutton(_ sender: UIButton) {
-        if inputflag == 16{
-            if opeFlg == 0{
-                hex += "E"
-                hexlabel.text = hex
-                fromhex()
-            }else{
-                hex = "E"
-                hexlabel.text = hex
-                fromhex()
-                flgClear()
-            }
-        }
+        buttoninput(number: "E")
     }
     @IBAction func Fbutton(_ sender: UIButton) {
-        if inputflag == 16{
-            if opeFlg == 0{
-                hex += "F"
-                hexlabel.text = hex
-                fromhex()
-            }else{
-                hex = "F"
-                hexlabel.text = hex
-                fromhex()
-                flgClear()
-            }
-        }
+        buttoninput(number: "F")
     }
-    
     @IBAction func zerobutton(_ sender: UIButton) {
-        switch inputflag {
-        case 2:
-            if opeFlg == 0{
-                bin += "0"
-                binlabel.text = bin
-                frombin()
-            }else{
-                bin = "0"
-                binlabel.text = bin
-                frombin()
-                flgClear()
-            }
-        case 8:
-            if opeFlg == 0{
-                oct += "0"
-                octlabel.text = oct
-                fromoct()
-            }else{
-                oct = "0"
-                octlabel.text = oct
-                fromoct()
-                flgClear()
-            }
-        case 10:
-            if opeFlg == 0{
-                dec += "0"
-                declabel.text = dec
-                fromDecimal()
-            }else{
-                dec = "0"
-                declabel.text = dec
-                fromDecimal()
-                flgClear()
-            }
-        case 16:
-            if opeFlg == 0{
-                hex += "0"
-                hexlabel.text = hex
-                fromhex()
-            }else{
-                hex = "0"
-                hexlabel.text = hex
-                fromhex()
-                flgClear()
-            }
-        default:break
-        }
+        buttoninput(number: "0")
     }
     @IBAction func onebutton(_ sender: UIButton) {
-        switch inputflag {
-        case 2:
-            if opeFlg == 0{
-                bin += "1"
-                binlabel.text = bin
-                frombin()
-            }else{
-                bin = "1"
-                binlabel.text = bin
-                frombin()
-                flgClear()
-            }
-        case 8:
-            if opeFlg == 0{
-                oct += "1"
-                octlabel.text = oct
-                fromoct()
-            }else{
-                oct = "1"
-                octlabel.text = oct
-                fromoct()
-                flgClear()
-            }
-        case 10:
-            if opeFlg == 0{
-                dec += "1"
-                declabel.text = dec
-                fromDecimal()
-            }else{
-                dec = "1"
-                declabel.text = dec
-                fromDecimal()
-                flgClear()
-            }
-        case 16:
-            if opeFlg == 0{
-                hex += "1"
-                hexlabel.text = hex
-                fromhex()
-            }else{
-                hex = "1"
-                hexlabel.text = hex
-                fromhex()
-                flgClear()
-            }
-        default:break
-        }
+        buttoninput(number: "1")
     }
     @IBAction func twobutton(_ sender: UIButton) {
-        switch inputflag {
-        case 8:
-            if opeFlg == 0{
-                oct += "2"
-                octlabel.text = oct
-                fromoct()
-            }else{
-                oct = "2"
-                octlabel.text = oct
-                fromoct()
-                flgClear()
-            }
-        case 10:
-            if opeFlg == 0{
-                dec += "2"
-                declabel.text = dec
-                fromDecimal()
-            }else{
-                dec = "2"
-                declabel.text = dec
-                fromDecimal()
-                flgClear()
-            }
-        case 16:
-            if opeFlg == 0{
-                hex += "2"
-                hexlabel.text = hex
-                fromhex()
-            }else{
-                hex = "2"
-                hexlabel.text = hex
-                fromhex()
-                flgClear()
-            }
-        default:break
-        }
+        buttoninput(number: "2")
     }
     @IBAction func threebutton(_ sender: UIButton) {
-        switch inputflag {
-        case 8:
-            if opeFlg == 0{
-                oct += "3"
-                octlabel.text = oct
-                fromoct()
-            }else{
-                oct = "3"
-                octlabel.text = oct
-                fromoct()
-                flgClear()
-            }
-        case 10:
-            if opeFlg == 0{
-                dec += "3"
-                declabel.text = dec
-                fromDecimal()
-            }else{
-                dec = "3"
-                declabel.text = dec
-                fromDecimal()
-                flgClear()
-            }
-        case 16:
-            if opeFlg == 0{
-                hex += "3"
-                hexlabel.text = hex
-                fromhex()
-            }else{
-                hex = "3"
-                hexlabel.text = hex
-                fromhex()
-                flgClear()
-            }
-        default:break
-        }
+        buttoninput(number: "3")
     }
     @IBAction func fourbutton(_ sender: UIButton) {
-        switch inputflag {
-        case 8:
-            if opeFlg == 0{
-                oct += "4"
-                octlabel.text = oct
-                fromoct()
-            }else{
-                oct = "4"
-                octlabel.text = oct
-                fromoct()
-                flgClear()
-            }
-        case 10:
-            if opeFlg == 0{
-                dec += "4"
-                declabel.text = dec
-                fromDecimal()
-            }else{
-                dec = "4"
-                declabel.text = dec
-                fromDecimal()
-                flgClear()
-            }
-        case 16:
-            if opeFlg == 0{
-                hex += "4"
-                hexlabel.text = hex
-                fromhex()
-            }else{
-                hex = "4"
-                hexlabel.text = hex
-                fromhex()
-                flgClear()
-            }
-        default:break
-        }
+        buttoninput(number: "4")
     }
     @IBAction func fivebutton(_ sender: UIButton) {
-        switch inputflag {
-        case 8:
-            if opeFlg == 0{
-                oct += "5"
-                octlabel.text = oct
-                fromoct()
-            }else{
-                oct = "5"
-                octlabel.text = oct
-                fromoct()
-                flgClear()
-            }
-        case 10:
-            if opeFlg == 0{
-                dec += "5"
-                declabel.text = dec
-                fromDecimal()
-            }else{
-                dec = "5"
-                declabel.text = dec
-                fromDecimal()
-                flgClear()
-            }
-        case 16:
-            if opeFlg == 0{
-                hex += "5"
-                hexlabel.text = hex
-                fromhex()
-            }else{
-                hex = "5"
-                hexlabel.text = hex
-                fromhex()
-                flgClear()
-            }
-        default:break
-        }
+        buttoninput(number: "5")
     }
     @IBAction func sixbutton(_ sender: UIButton) {
-        switch inputflag {
-        case 8:
-            if opeFlg == 0{
-                oct += "6"
-                octlabel.text = oct
-                fromoct()
-            }else{
-                oct = "6"
-                octlabel.text = oct
-                fromoct()
-                flgClear()
-            }
-        case 10:
-            if opeFlg == 0{
-                dec += "6"
-                declabel.text = dec
-                fromDecimal()
-            }else{
-                dec = "6"
-                declabel.text = dec
-                fromDecimal()
-                flgClear()
-            }
-        case 16:
-            if opeFlg == 0{
-                hex += "6"
-                hexlabel.text = hex
-                fromhex()
-            }else{
-                hex = "6"
-                hexlabel.text = hex
-                fromhex()
-                flgClear()
-            }
-        default:break
-        }
+        buttoninput(number: "6")
     }
     @IBAction func sevenbutton(_ sender: UIButton) {
-        switch inputflag {
-        case 8:
-            if opeFlg == 0{
-                oct += "7"
-                octlabel.text = oct
-                fromoct()
-            }else{
-                oct = "7"
-                octlabel.text = oct
-                fromoct()
-                flgClear()
-            }
-        case 10:
-            if opeFlg == 0{
-                dec += "7"
-                declabel.text = dec
-                fromDecimal()
-            }else{
-                dec = "7"
-                declabel.text = dec
-                fromDecimal()
-                flgClear()
-            }
-        case 16:
-            if opeFlg == 0{
-                hex += "7"
-                hexlabel.text = hex
-                fromhex()
-            }else{
-                hex = "7"
-                hexlabel.text = hex
-                fromhex()
-                flgClear()
-            }
-        default:break
-        }
+        buttoninput(number: "7")
     }
     @IBAction func eightbutton(_ sender: UIButton) {
-        switch inputflag {
-        case 10:
-            if opeFlg == 0{
-                dec += "8"
-                declabel.text = dec
-                fromDecimal()
-            }else{
-                dec = "8"
-                declabel.text = dec
-                fromDecimal()
-                flgClear()
-            }
-        case 16:
-            if opeFlg == 0{
-                hex += "8"
-                hexlabel.text = hex
-                fromhex()
-            }else{
-                hex = "8"
-                hexlabel.text = hex
-                fromhex()
-                flgClear()
-            }
-        default:break
-        }
+        buttoninput(number: "8")
     }
     @IBAction func ninebutton(_ sender: UIButton) {
-        switch inputflag {
-        case 10:
+        buttoninput(number: "9")
+    }
+
+    enum OpeSource {
+        case addition
+        case substract
+        case multiplication
+        case division
+    }
+    var opeSource: OpeSource = .addition
+    
+    func opeButton(numbering:String) -> (){
+        switch opeSource{
+        case .addition:
             if opeFlg == 0{
-                dec += "9"
-                declabel.text = dec
-                fromDecimal()
-            }else{
-                dec = "9"
-                declabel.text = dec
-                fromDecimal()
-                flgClear()
+                calc(input: numbering)
+                ope = "+"
+                opeFlg = 1
+            }else if opeFlg == 1{
+                ope = "+"
             }
-        case 16:
+        case .substract:
             if opeFlg == 0{
-                hex += "9"
-                hexlabel.text = hex
-                fromhex()
-            }else{
-                hex = "9"
-                hexlabel.text = hex
-                fromhex()
-                flgClear()
+                calc(input: numbering)
+                ope = "-"
+                opeFlg = 1
+            }else if opeFlg == 1{
+                ope = "-"
             }
-        default:break
+        case .multiplication:
+            if opeFlg == 0{
+                calc(input: numbering)
+                ope = "×"
+                opeFlg = 1
+            }else if opeFlg == 1{
+                ope = "×"
+            }
+        case .division:
+            if opeFlg == 0{
+                calc(input: numbering)
+                ope = "÷"
+                opeFlg = 1
+            }else if opeFlg == 1{
+                ope = "÷"
+            }
+            
         }
     }
     
     @IBAction func AdditionButton(_ sender: UIButton) {
-        switch inputflag {
-        case 2:
-            if opeFlg == 0{
-                calc(input: bin)
-                ope = "+"
-                opeFlg = 1
-            }else if opeFlg == 1{
-                ope = "+"
-            }
-            
-        case 8:
-            if opeFlg == 0{
-                calc(input: oct)
-                ope = "+"
-                opeFlg = 1
-            }else if opeFlg == 1{
-                ope = "+"
-            }
-            
-        case 10:
-            if opeFlg == 0{
-                calc(input: dec)
-                ope = "+"
-                opeFlg = 1
-            }else if opeFlg == 1{
-                ope = "+"
-            }
-            
-        case 16:
-            if opeFlg == 0{
-                calc(input: hex)
-                ope = "+"
-                opeFlg = 1
-            }else if opeFlg == 1{
-                ope = "+"
-            }
-            
-        default:break
+        switch inputSource{
+        case .bin:
+            opeSource = .addition
+            opeButton(numbering: bin)
+        case .oct:
+            opeSource = .addition
+            opeButton(numbering: oct)
+        case .dec:
+            opeSource = .addition
+            opeButton(numbering: dec)
+        case .hex:
+            opeSource = .addition
+            opeButton(numbering: hex)
         }
     }
 
     @IBAction func SubtractionButton(_ sender: UIButton) {
-        switch inputflag {
-        case 2:
-            if opeFlg == 0{
-                calc(input: bin)
-                ope = "-"
-                opeFlg = 1
-            }else if opeFlg == 1{
-                ope = "-"
-            }
-            
-        case 8:
-            if opeFlg == 0{
-                calc(input: oct)
-                ope = "-"
-                opeFlg = 1
-            }else if opeFlg == 1{
-                ope = "-"
-            }
-            
-        case 10:
-            if opeFlg == 0{
-                calc(input: dec)
-                ope = "-"
-                opeFlg = 1
-            }else if opeFlg == 1{
-                ope = "-"
-            }
-            
-        case 16:
-            if opeFlg == 0{
-                calc(input: hex)
-                ope = "-"
-                opeFlg = 1
-            }else if opeFlg == 1{
-                ope = "-"
-            }
-            
-        default:break
+        switch inputSource{
+        case .bin:
+            opeSource = .substract
+            opeButton(numbering: bin)
+        case .oct:
+            opeSource = .substract
+            opeButton(numbering: oct)
+        case .dec:
+            opeSource = .substract
+            opeButton(numbering: dec)
+        case .hex:
+            opeSource = .substract
+            opeButton(numbering: hex)
         }
     }
     @IBAction func multiplicationButton(_ sender: UIButton) {
-        switch inputflag {
-        case 2:
-            if opeFlg == 0{
-                calc(input: bin)
-                ope = "×"
-                opeFlg = 1
-            }else if opeFlg == 1{
-                ope = "×"
-            }
-            
-        case 8:
-            if opeFlg == 0{
-                calc(input: oct)
-                ope = "×"
-                opeFlg = 1
-            }else if opeFlg == 1{
-                ope = "×"
-            }
-            
-        case 10:
-            if opeFlg == 0{
-                calc(input: dec)
-                ope = "×"
-                opeFlg = 1
-            }else if opeFlg == 1{
-                ope = "×"
-            }
-            
-        case 16:
-            if opeFlg == 0{
-                calc(input: hex)
-                ope = "×"
-                opeFlg = 1
-            }else if opeFlg == 1{
-                ope = "×"
-            }
-            
-        default:break
+        switch inputSource{
+        case .bin:
+            opeSource = .multiplication
+            opeButton(numbering: bin)
+        case .oct:
+            opeSource = .multiplication
+            opeButton(numbering: oct)
+        case .dec:
+            opeSource = .multiplication
+            opeButton(numbering: dec)
+        case .hex:
+            opeSource = .multiplication
+            opeButton(numbering: hex)
         }
-
-        
     }
     @IBAction func DivisionButton(_ sender: UIButton) {
-        switch inputflag {
-        case 2:
-            if opeFlg == 0{
-                calc(input: bin)
-                ope = "÷"
-                opeFlg = 1
-            }else if opeFlg == 1{
-                ope = "÷"
-            }
-            
-        case 8:
-            if opeFlg == 0{
-                calc(input: oct)
-                ope = "÷"
-                opeFlg = 1
-            }else if opeFlg == 1{
-                ope = "÷"
-            }
-            
-        case 10:
-            if opeFlg == 0{
-                calc(input: dec)
-                ope = "÷"
-                opeFlg = 1
-            }else if opeFlg == 1{
-                ope = "÷"
-            }
-            
-        case 16:
-            if opeFlg == 0{
-                calc(input: hex)
-                ope = "÷"
-                opeFlg = 1
-            }else if opeFlg == 1{
-                ope = "÷"
-            }
-            
-        default:break
+        switch inputSource{
+        case .bin:
+            opeSource = .division
+            opeButton(numbering: bin)
+        case .oct:
+            opeSource = .division
+            opeButton(numbering: oct)
+        case .dec:
+            opeSource = .division
+            opeButton(numbering: dec)
+        case .hex:
+            opeSource = .division
+            opeButton(numbering: hex)
         }
-        
     }
     
     @IBAction func equalbutton(_ sender: UIButton) {
-        
         if ope == "÷" && result == "0"{
             binlabel.text = "エラー"
             declabel.text = "エラー"
@@ -1114,20 +642,40 @@ class ViewController: UIViewController {
         flgClear()
         borderClear()
     }
-    @IBAction func allclearbutton(_ sender: UIButton) {
-    }
-    
 
+    //ラベルにタッチした際、枠線の色を変更
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        for touch: UITouch in touches {
+            let tag = touch.view!.tag
+            switch tag {
+            case 1:
+                print("hex")
+                highlight(button: hexbutton, label: hexlabel, source: .hex)
+            case 2:
+                highlight(button: decbutton, label: declabel, source: .dec)
+            case 3:
+                highlight(button: octbutton, label: octlabel, source: .oct)
+            case 4:
+                highlight(button: binbutton, label: binlabel, source: .bin)
+            default:
+                break
+            }
+        }
+    }
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        hexlabel.isUserInteractionEnabled = true
+        declabel.isUserInteractionEnabled = true
+        octlabel.isUserInteractionEnabled = true
+        binlabel.isUserInteractionEnabled = true
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }
 
