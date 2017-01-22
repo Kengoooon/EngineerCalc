@@ -72,7 +72,7 @@ class ViewController: UIViewController {
                 firstFlg = 1
             default: break
             }
-            result = dectobin(num: String(format:"%g",sum))
+            result = dectobin(num: String(format:"%g",floor(sum)))
             binlabel.text = result
             bin = result
             frombin()
@@ -93,7 +93,7 @@ class ViewController: UIViewController {
                 firstFlg = 1
             default: break
             }
-            result = dectooct(num: String(format:"%g",sum))
+            result = dectooct(num: String(format:"%g",floor(sum)))
             octlabel.text = result
             oct = result
             fromoct()
@@ -114,7 +114,7 @@ class ViewController: UIViewController {
                 firstFlg = 1
             default: break
             }
-            result = String(format:"%g",sum)
+            result = String(format:"%g",floor(sum))
             declabel.text = result
             dec = result
             fromDecimal()
@@ -135,7 +135,7 @@ class ViewController: UIViewController {
                 firstFlg = 1
             default: break
             }
-            result = dectohex(num: String(format:"%g",sum))
+            result = dectohex(num: String(format:"%g",floor(sum)))
             hexlabel.text = result
             hex = result
             fromhex()
