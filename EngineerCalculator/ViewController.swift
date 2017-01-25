@@ -173,6 +173,12 @@ class ViewController: UIViewController {
             Dbutton.layer.backgroundColor = UIColor.black.cgColor
             Ebutton.layer.backgroundColor = UIColor.black.cgColor
             Fbutton.layer.backgroundColor = UIColor.black.cgColor
+            Abutton.isUserInteractionEnabled = false
+            Bbutton.isUserInteractionEnabled = false
+            Cbutton.isUserInteractionEnabled = false
+            Dbutton.isUserInteractionEnabled = false
+            Ebutton.isUserInteractionEnabled = false
+            Fbutton.isUserInteractionEnabled = false
         case .oct:
             Abutton.layer.backgroundColor = UIColor.black.cgColor
             Bbutton.layer.backgroundColor = UIColor.black.cgColor
@@ -182,6 +188,14 @@ class ViewController: UIViewController {
             Fbutton.layer.backgroundColor = UIColor.black.cgColor
             eightbutton.layer.backgroundColor = UIColor.black.cgColor
             ninebutton.layer.backgroundColor = UIColor.black.cgColor
+            Abutton.isUserInteractionEnabled = false
+            Bbutton.isUserInteractionEnabled = false
+            Cbutton.isUserInteractionEnabled = false
+            Dbutton.isUserInteractionEnabled = false
+            Ebutton.isUserInteractionEnabled = false
+            Fbutton.isUserInteractionEnabled = false
+            eightbutton.isUserInteractionEnabled = false
+            ninebutton.isUserInteractionEnabled = false
         case .bin:
             Abutton.layer.backgroundColor = UIColor.black.cgColor
             Bbutton.layer.backgroundColor = UIColor.black.cgColor
@@ -197,11 +211,28 @@ class ViewController: UIViewController {
             sevenbutton.layer.backgroundColor = UIColor.black.cgColor
             eightbutton.layer.backgroundColor = UIColor.black.cgColor
             ninebutton.layer.backgroundColor = UIColor.black.cgColor
+            Abutton.isUserInteractionEnabled = false
+            Bbutton.isUserInteractionEnabled = false
+            Cbutton.isUserInteractionEnabled = false
+            Dbutton.isUserInteractionEnabled = false
+            Ebutton.isUserInteractionEnabled = false
+            Fbutton.isUserInteractionEnabled = false
+            eightbutton.isUserInteractionEnabled = false
+            ninebutton.isUserInteractionEnabled = false
+            twobutton.isUserInteractionEnabled = false
+            threebutton.isUserInteractionEnabled = false
+            fourbutton.isUserInteractionEnabled = false
+            fivebutton.isUserInteractionEnabled = false
+            sixbutton.isUserInteractionEnabled = false
+            sevenbutton.isUserInteractionEnabled = false
         }
         
     }
 
     func backgroundreset() -> (){
+        
+        zerobutton.layer.backgroundColor = UIColor.lightGray.cgColor
+        onebutton.layer.backgroundColor = UIColor.lightGray.cgColor
         twobutton.layer.backgroundColor = UIColor.lightGray.cgColor
         threebutton.layer.backgroundColor = UIColor.lightGray.cgColor
         fourbutton.layer.backgroundColor = UIColor.lightGray.cgColor
@@ -216,6 +247,20 @@ class ViewController: UIViewController {
         Dbutton.layer.backgroundColor = UIColor.lightGray.cgColor
         Ebutton.layer.backgroundColor = UIColor.lightGray.cgColor
         Fbutton.layer.backgroundColor = UIColor.lightGray.cgColor
+        Abutton.isUserInteractionEnabled = true
+        Bbutton.isUserInteractionEnabled = true
+        Cbutton.isUserInteractionEnabled = true
+        Dbutton.isUserInteractionEnabled = true
+        Ebutton.isUserInteractionEnabled = true
+        Fbutton.isUserInteractionEnabled = true
+        eightbutton.isUserInteractionEnabled = true
+        ninebutton.isUserInteractionEnabled = true
+        twobutton.isUserInteractionEnabled = true
+        threebutton.isUserInteractionEnabled = true
+        fourbutton.isUserInteractionEnabled = true
+        fivebutton.isUserInteractionEnabled = true
+        sixbutton.isUserInteractionEnabled = true
+        sevenbutton.isUserInteractionEnabled = true
     }
     
     func Clear() -> (){
@@ -418,48 +463,56 @@ class ViewController: UIViewController {
     func buttoninput(number: String){
         switch inputSource {
         case .hex:
-            if opeFlg == 0{
-                hex += number
-                hexlabel.text = hex
-                fromhex()
-            }else{
-                hex = number
-                hexlabel.text = hex
-                fromhex()
-                flgClear()
+            if hex.characters.count <= 7 {
+                if opeFlg == 0 {
+                    hex += number
+                    hexlabel.text = hex
+                    fromhex()
+                }else{
+                    hex = number
+                    hexlabel.text = hex
+                    fromhex()
+                    flgClear()
+                }
             }
         case .dec:
-            if opeFlg == 0{
-                dec += number
-                declabel.text = dec
-                fromDecimal()
-            }else{
-                dec = number
-                declabel.text = dec
-                fromDecimal()
-                flgClear()
+            if dec.characters.count <= 8 {
+                if opeFlg == 0{
+                    dec += number
+                    declabel.text = dec
+                    fromDecimal()
+                }else{
+                    dec = number
+                    declabel.text = dec
+                    fromDecimal()
+                    flgClear()
+                }
             }
         case .oct:
-            if opeFlg == 0{
-                oct += number
-                octlabel.text = oct
-                fromoct()
-            }else{
-                oct = number
-                octlabel.text = oct
-                fromoct()
-                flgClear()
+            if oct.characters.count <= 9 {
+                if opeFlg == 0{
+                    oct += number
+                    octlabel.text = oct
+                    fromoct()
+                }else{
+                    oct = number
+                    octlabel.text = oct
+                    fromoct()
+                    flgClear()
+                }
             }
         case .bin:
-            if opeFlg == 0{
-                bin += number
-                binlabel.text = bin
-                frombin()
-            }else{
-                bin = number
-                binlabel.text = bin
-                frombin()
-                flgClear()
+            if bin.characters.count <= 15 {
+                if opeFlg == 0{
+                    bin += number
+                    binlabel.text = bin
+                    frombin()
+                }else{
+                    bin = number
+                    binlabel.text = bin
+                    frombin()
+                    flgClear()
+                }
             }
         }
     }
@@ -650,14 +703,17 @@ class ViewController: UIViewController {
             let tag = touch.view!.tag
             switch tag {
             case 1:
-                print("hex")
                 highlight(button: hexbutton, label: hexlabel, source: .hex)
+                buttonClear()
             case 2:
                 highlight(button: decbutton, label: declabel, source: .dec)
+                buttonClear()
             case 3:
                 highlight(button: octbutton, label: octlabel, source: .oct)
+                buttonClear()
             case 4:
                 highlight(button: binbutton, label: binlabel, source: .bin)
+                buttonClear()
             default:
                 break
             }
