@@ -7,8 +7,10 @@
 //
 
 import UIKit
+// import iAd
+import GoogleMobileAds
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,GADBannerViewDelegate{
     
     @IBOutlet weak var hexbutton: UIButton!
     @IBOutlet weak var decbutton: UIButton!
@@ -34,6 +36,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var sevenbutton: UIButton!
     @IBOutlet weak var eightbutton: UIButton!
     @IBOutlet weak var ninebutton: UIButton!
+    
+    let AdMobID = "[Your AdMob ID]"
+    let TEST_ID = "ca-app-pub-6765299879929157~6777375272"
+    
+    let AdMobTest:Bool = true
 
     var hex:String = ""
     var dec:String = ""
@@ -727,6 +734,22 @@ class ViewController: UIViewController {
         declabel.isUserInteractionEnabled = true
         octlabel.isUserInteractionEnabled = true
         binlabel.isUserInteractionEnabled = true
+        
+        // AdMob広告設定
+        var bannerView: GADBannerView = GADBannerView()
+        bannerView = GADBannerView(adSize:kGADAdSizeBanner)
+        bannerView.frame.origin = CGPoint(x:0, y:(self.view.frame.size.height - bannerView.frame.height))
+        bannerView.frame.size = CGSize(width:self.view.frame.width,height:bannerView.frame.height)
+        // AdMobで発行された広告ユニットIDを設定
+        bannerView.adUnitID = "ca-app-pub-6765299879929157/5763676500"
+        bannerView.delegate = self
+        bannerView.rootViewController = self
+        let gadRequest:GADRequest = GADRequest()
+        // テスト用の広告を表示する時のみ使用（申請時に削除）
+        gadRequest.testDevices = [kGADSimulatorID]
+        bannerView.load(gadRequest)
+        self.view.addSubview(bannerView)
+        
     }
 
     override func didReceiveMemoryWarning() {
