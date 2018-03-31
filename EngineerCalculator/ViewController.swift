@@ -36,6 +36,8 @@ class ViewController: UIViewController,GADBannerViewDelegate{
     @IBOutlet weak var sevenbutton: UIButton!
     @IBOutlet weak var eightbutton: UIButton!
     @IBOutlet weak var ninebutton: UIButton!
+    @IBOutlet weak var plusminusbutton: UIButton!
+    @IBOutlet weak var equalbutton: UIButton!
     
     let AdMobID = "[Your AdMob ID]"
     let TEST_ID = "ca-app-pub-6765299879929157~6777375272"
@@ -254,6 +256,8 @@ class ViewController: UIViewController,GADBannerViewDelegate{
         Dbutton.layer.backgroundColor = UIColor.lightGray.cgColor
         Ebutton.layer.backgroundColor = UIColor.lightGray.cgColor
         Fbutton.layer.backgroundColor = UIColor.lightGray.cgColor
+        plusminusbutton.layer.backgroundColor  = UIColor.lightGray.cgColor
+        equalbutton.layer.backgroundColor  = UIColor.lightGray.cgColor
         Abutton.isUserInteractionEnabled = true
         Bbutton.isUserInteractionEnabled = true
         Cbutton.isUserInteractionEnabled = true

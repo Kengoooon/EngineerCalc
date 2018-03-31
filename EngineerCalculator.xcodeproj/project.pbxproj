@@ -28,7 +28,6 @@
 		BFA800521E06BB400048882C /* EngineerCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA800511E06BB400048882C /* EngineerCalculatorTests.swift */; };
 		BFA8005D1E06BB400048882C /* EngineerCalculatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA8005C1E06BB400048882C /* EngineerCalculatorUITests.swift */; };
 		BFA8006B1E095DBD0048882C /* UIView+Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA8006A1E095DBD0048882C /* UIView+Border.swift */; };
-		BFBF19421F91E298004DF5C8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFBF19411F91E298004DF5C8 /* GoogleService-Info.plist */; };
 		BFCD56381F91F3B400F80D84 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFCD56371F91F3B400F80D84 /* GoogleMobileAds.framework */; };
 		DF1711191EA1C4AC83F91F4E /* Pods_EngineerCalculator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BC8EB591A11CC58E3A1F503 /* Pods_EngineerCalculator.framework */; };
 /* End PBXBuildFile section */
@@ -85,7 +84,6 @@
 		BFA8005C1E06BB400048882C /* EngineerCalculatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineerCalculatorUITests.swift; sourceTree = "<group>"; };
 		BFA8005E1E06BB400048882C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFA8006A1E095DBD0048882C /* UIView+Border.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Border.swift"; sourceTree = "<group>"; };
-		BFBF19411F91E298004DF5C8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BFCD56371F91F3B400F80D84 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = "Pods/Google-Mobile-Ads-SDK/Frameworks/frameworks/GoogleMobileAds.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -196,7 +194,6 @@
 				BFA800431E06BB3F0048882C /* Assets.xcassets */,
 				BFA800451E06BB3F0048882C /* LaunchScreen.storyboard */,
 				BFA800481E06BB3F0048882C /* Info.plist */,
-				BFBF19411F91E298004DF5C8 /* GoogleService-Info.plist */,
 			);
 			path = EngineerCalculator;
 			sourceTree = "<group>";
@@ -337,7 +334,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFA800471E06BB3F0048882C /* LaunchScreen.storyboard in Resources */,
-				BFBF19421F91E298004DF5C8 /* GoogleService-Info.plist in Resources */,
 				BFA800441E06BB3F0048882C /* Assets.xcassets in Resources */,
 				BFA800421E06BB3F0048882C /* Main.storyboard in Resources */,
 			);
